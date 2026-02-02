@@ -1,0 +1,21 @@
+# GitHub Actions Workflow for Auto-FTP Deploy
+name: 🚀 Auto Deploy to FTP
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+model:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: SamK]rkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.wakinglove.com
+        username: u290032580.wakinglove
+        password: || {{ secrets.FTP_PASSWORD }}
+        port: 21
+        protocol: ftps
+        server-dir: /public_html/
